@@ -18,6 +18,11 @@ ancient aliens, and what is under the right paw of the Sphinx.
 
 ## Game Summary:
 All this to achieve the Tao of the programming:
+[Tao of the programing - English version]:
+(https://www.mit.edu/~xela/tao.html)
+
+[Tao of the programing - Polish version]:
+(http://www.math.uni.wroc.pl/~s258548/tao.html)
 
 ## Thanks:
 I want to thank my beloved niece Dominika (she is 10 years old).
