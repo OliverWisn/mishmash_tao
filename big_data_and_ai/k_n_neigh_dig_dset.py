@@ -8,6 +8,8 @@ from sklearn.model_selection import cross_val_score
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.metrics import confusion_matrix
 from sklearn.metrics import classification_report
+from sklearn.svm import SVC
+from sklearn.naive_bayes import GaussianNB
 import matplotlib.pyplot as plt
 import seaborn as sns
 import pandas as pd
@@ -73,7 +75,7 @@ plt.show()
 # KFold Class.
 kfold = KFold(n_splits=10, random_state=11, shuffle=True)
 
-# Using the KFold Object with Function cross_val_score
+# Using the KFold Object with Function cross_val_score.
 scores = cross_val_score(estimator=knn, X=digits.data, y=digits.target, 
     cv=kfold)
 print("""\nThe accuracy of the model's predictions for particular folds for 
@@ -81,3 +83,17 @@ print("""\nThe accuracy of the model's predictions for particular folds for
 print(scores)
 print(f'Mean accuracy: {scores.mean():.2%}')
 print(f'Accuracy standard deviation: {scores.std():.2%}')
+
+# 14.3.3 Running Multiple Models to Find the Best One.
+estimators = {
+    'KNeighborsClassifier': knn, 
+    'SVC': SVC(gamma='scale'),
+    'GaussianNB': GaussianNB()}
+
+for estimator_name, estimator_object in estimators.items():
+    kfold = KFold(n_splits=10, random_state=11, shuffle=True)
+    scores = cross_val_score(estimator=estimator_object, 
+        X=digits.data, y=digits.target, cv=kfold)
+    print(f'{estimator_name:>20}: ' + 
+        f'mean accuracy={scores.mean():.2%}; ' +
+        f'standard deviation={scores.std():.2%}')
