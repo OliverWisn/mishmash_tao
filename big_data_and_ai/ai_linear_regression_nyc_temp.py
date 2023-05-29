@@ -31,3 +31,10 @@ print(linear_regression.coef_)
 print('The value of the parameter b calculated by the estimator for' +
 		' the equation y=mx+b:')
 print(linear_regression.intercept_)
+print('------------')
+
+# Testing the Model
+predicted = linear_regression.predict(X_test)
+expected = y_test
+for p, e in zip(predicted[::5], expected[::5]):
+    print(f'predicted: {p:.2f}, expected: {e:.2f}')
