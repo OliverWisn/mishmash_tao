@@ -5,6 +5,7 @@ from sklearn.datasets import load_digits
 from sklearn.model_selection import train_test_split
 from sklearn.model_selection import KFold
 from sklearn.model_selection import cross_val_score
+from sklearn.model_selection import cross_validate
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.metrics import confusion_matrix
 from sklearn.metrics import classification_report
@@ -84,7 +85,7 @@ print(scores)
 print(f'Mean accuracy: {scores.mean():.2%}')
 print(f'Accuracy standard deviation: {scores.std():.2%}')
 
-# 14.3.3 Running Multiple Models to Find the Best One.
+# Running Multiple Models to Find the Best One.
 estimators = {
     'KNeighborsClassifier': knn, 
     'SVC': SVC(gamma='scale'),
@@ -97,3 +98,33 @@ for estimator_name, estimator_object in estimators.items():
     print(f'{estimator_name:>20}: ' + 
         f'mean accuracy={scores.mean():.2%}; ' +
         f'standard deviation={scores.std():.2%}')
+
+# Hyperparameter Tuning.
+for k in range(1, 20, 2):
+     kfold = KFold(n_splits=10, random_state=11, shuffle=True)
+     knn = KNeighborsClassifier(n_neighbors=k)
+     scores = cross_val_score(estimator=knn, 
+         X=digits.data, y=digits.target, cv=kfold)
+     print(f'k={k:<2}; mean accuracy={scores.mean():.2%}; ' +
+           f'standard deviation={scores.std():.2%}')
+
+# Hyperparameter Tuning and checking parameters.
+print('------')
+for k in range(1, 20, 2):
+    kfold = KFold(n_splits=10, random_state=11, shuffle=True)
+    knn = KNeighborsClassifier(n_neighbors=k)
+    scores = cross_val_score(estimator=knn, 
+        X=digits.data, y=digits.target, cv=kfold)
+    print(f'k={k:<2}; mean accuracy={scores.mean():.2%}; ' +
+        f'standard deviation={scores.std():.2%}')
+    # Parameter checking for all 10 cross-validations for a given k.
+    cv_results = cross_validate(estimator=knn, X=digits.data, y=digits.target, 
+        cv=kfold)
+    print(sorted(cv_results.keys()))
+    print('Fit time:')
+    print(cv_results['fit_time'])
+    print('Score time:')
+    print(cv_results['score_time'])
+    print('Test score:')
+    print(cv_results['test_score'])
+    print('------')
