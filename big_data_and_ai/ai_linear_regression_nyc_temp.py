@@ -38,3 +38,10 @@ predicted = linear_regression.predict(X_test)
 expected = y_test
 for p, e in zip(predicted[::5], expected[::5]):
     print(f'predicted: {p:.2f}, expected: {e:.2f}')
+print('------------')
+
+# Predicting Future Temperatures and Estimating Past Temperatures
+predict = (lambda x: linear_regression.coef_ * x + 
+                    linear_regression.intercept_)
+for year in [1880, 1885, 1890, 2023, 2024, 2025]:
+	print(year, predict(year))
