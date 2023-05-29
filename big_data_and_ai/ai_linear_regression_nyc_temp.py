@@ -3,7 +3,10 @@
 
 from sklearn.linear_model import LinearRegression
 from sklearn.model_selection import train_test_split
+import matplotlib.pyplot as plt
+import numpy as np
 import pandas as pd
+import seaborn as sns
 
 # Loading the Average High Temperatures into a DataFrame
 nyc = pd.read_csv('ave_hi_nyc_jan_1895-2018.csv')
@@ -45,3 +48,12 @@ predict = (lambda x: linear_regression.coef_ * x +
                     linear_regression.intercept_)
 for year in [1880, 1885, 1890, 2023, 2024, 2025]:
 	print(year, predict(year))
+
+# Visualizing the Dataset with the Regression Line
+axes = sns.scatterplot(data=nyc, x='Date', y='Temperature',
+    hue='Temperature', palette='winter', legend=False)
+axes.set_ylim(10, 70)
+x = np.array([min(nyc.Date.values), max(nyc.Date.values)])
+y = predict(x)
+line = plt.plot(x, y)
+plt.show()
