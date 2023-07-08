@@ -21,7 +21,7 @@ All this to achieve the Tao of the programming:
 - Tao of the programing - English version:
 (https://www.mit.edu/~xela/tao.html)
 - Tao of the programing - Polish version:
-(http://www.math.uni.wroc.pl/~s258548/tao.html)
+(http://bogdro.evai.pl/humor/tao_programowania.txt)
 
 ## Thanks:
 I want to thank my beloved niece Dominika (she is 10 years old).
