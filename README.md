@@ -9,7 +9,7 @@ code on my github account doesn't show it.
 There are always some.
 
 ## Requirements: 
-python 3.9 - guess the rest.
+same python - guess the rest.
 
 ## Remarks:
 This is where you can find never-released Star Trek movies. You can 
@@ -24,7 +24,7 @@ All this to achieve the Tao of the programming:
 (http://bogdro.evai.pl/humor/tao_programowania.txt)
 
 ## Thanks:
-I want to thank my beloved niece Dominika (she is 10 years old).
+I want to thank my beloved niece Dominika (she is 11 years old).
 
 ## Game Controls:    
 You don't have a chance to control everything.
